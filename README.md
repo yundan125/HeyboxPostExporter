@@ -364,13 +364,15 @@ heybox-export --mhtml ".\网上经常有说黑猴后期五六章赶工.mhtml" -o
 3. 验证 Python 是 64 位运行时。
 4. 构建完整 onedir 版本。
 5. 构建 PyInstaller `--onefile` 单文件版本。
-6. 排除正常 MCP 工作流不需要的 Playwright 运行时。
+6. 使用由原始 `app-icon-source.png` 居中裁切得到的 `app-icon.png` 设置 EXE、任务栏和窗口图标。
+7. 排除正常 MCP 工作流不需要的 Playwright 运行时，并生成 onedir 压缩包。
 
 构建结果：
 
 ```text
 dist\HeyboxPostExporter.exe                         # 推荐：Windows x64 单文件
 dist\HeyboxPostExporter\HeyboxPostExporter.exe    # 完整 onedir 版本
+dist\HeyboxPostExporter_Windows_x64.zip            # 完整 onedir 压缩包
 ```
 
 单文件版本仍需要系统 Node/npx；构建脚本不会打包 Node.js，也不会修改系统代理或用户的全局 npm 配置。

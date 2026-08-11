@@ -4,6 +4,7 @@ import json
 import os
 import queue
 import subprocess
+import sys
 import threading
 import tkinter as tk
 from pathlib import Path
@@ -29,10 +30,24 @@ STATUS_COLORS = {
     "gray": "#667085",
 }
 
+APP_ICON_NAME = "app-icon.png"
+
+
+def bundled_resource_path(name: str) -> Path:
+    bundle_dir = getattr(sys, "_MEIPASS", None)
+    if bundle_dir:
+        return Path(bundle_dir) / name
+    return Path(__file__).resolve().parents[3] / name
+
 
 class ExporterApp(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
+        self._app_icon: tk.PhotoImage | None = None
+        icon_path = bundled_resource_path(APP_ICON_NAME)
+        if icon_path.is_file():
+            self._app_icon = tk.PhotoImage(file=icon_path)
+            self.iconphoto(True, self._app_icon)
         self.title("小黑盒帖子完整导出工具")
         self.geometry("900x850")
         self.minsize(790, 720)

@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+*.spec
+browser-profile/
+debug/
+exports/
+logs/
+heybox-settings.json

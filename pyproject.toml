@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "heybox-post-exporter"
+version = "0.1.0"
+description = "Export complete Xiaoheihe posts and comments to JSON, Markdown and HTML"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "beautifulsoup4>=4.13,<5",
+  "httpx>=0.28,<1",
+  "lxml>=5.3,<7",
+  "playwright>=1.60,<2",
+]
+
+[project.scripts]
+heybox-export = "heybox_exporter.cli:main"
+heybox-export-gui = "heybox_exporter.gui.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

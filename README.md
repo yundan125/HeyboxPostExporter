@@ -21,9 +21,12 @@ HeyboxPostExporter 是一个面向 Windows 的小黑盒帖子完整导出工具�
 
 推荐下载单文件版本：
 
-- [HeyboxPostExporter.exe](https://github.com/yundan125/HeyboxPostExporter/raw/refs/heads/main/dist/HeyboxPostExporter.exe)
+- [下载最新版 HeyboxPostExporter.exe](https://github.com/yundan125/HeyboxPostExporter/releases/latest/download/HeyboxPostExporter.exe)
+- [查看全部 Releases](https://github.com/yundan125/HeyboxPostExporter/releases)
 
 下载后可以直接运行，不需要安装 Python。单文件第一次启动会先解压自身运行环境，因此可能比后续启动稍慢。
+
+GitHub Release 中的 `HeyboxPostExporter.exe` 是推荐的正式发布物。仓库内 `dist/` 目录用于保留可复现构建产物，不建议通过 Raw 链接作为日常下载入口。
 
 仓库还提供完整 onedir 版本和压缩包：
 

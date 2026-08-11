@@ -52,5 +52,11 @@ chrome-devtools-mcp@1.6.0 --autoConnect
 稳定发布路径：
 
 ```text
+D:\code\heybox\dist\HeyboxPostExporter.exe
+```
+
+这是可直接运行的 Windows x64 单文件版本。完整 onedir 版本仍保存在：
+
+```text
 D:\code\heybox\dist\HeyboxPostExporter\HeyboxPostExporter.exe
 ```

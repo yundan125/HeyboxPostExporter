@@ -14,6 +14,8 @@ if ($Architecture -ne "64bit") {
 
 $StagingDist = Join-Path $ProjectRoot "build\release-staging"
 $StagedApp = Join-Path $StagingDist "HeyboxPostExporter"
+$SingleFileStaging = Join-Path $ProjectRoot "build\singlefile-staging"
+$SingleFileExe = Join-Path $ProjectRoot "dist\HeyboxPostExporter.exe"
 $ReleaseApp = Join-Path $ProjectRoot "dist\HeyboxPostExporter"
 
 & ".venv\Scripts\pyinstaller.exe" `
@@ -23,6 +25,21 @@ $ReleaseApp = Join-Path $ProjectRoot "dist\HeyboxPostExporter"
     --windowed `
     --name "HeyboxPostExporter" `
     --distpath $StagingDist `
+    --paths "src" `
+    --exclude-module "playwright" `
+    --exclude-module "heybox_exporter.browser" `
+    --exclude-module "heybox_exporter.browser_connection" `
+    "src\heybox_exporter\gui_entry.py"
+
+& ".venv\Scripts\pyinstaller.exe" `
+    --noconfirm `
+    --clean `
+    --onefile `
+    --windowed `
+    --name "HeyboxPostExporter" `
+    --distpath $SingleFileStaging `
+    --workpath "build\HeyboxPostExporter-onefile" `
+    --specpath "build" `
     --paths "src" `
     --exclude-module "playwright" `
     --exclude-module "heybox_exporter.browser" `
@@ -49,5 +66,8 @@ try {
     Write-Warning "Stable release directory is in use; published to $Fallback"
 }
 
+Copy-Item -LiteralPath (Join-Path $SingleFileStaging "HeyboxPostExporter.exe") -Destination $SingleFileExe -Force
+
 Write-Host "Build complete: $PublishedApp\HeyboxPostExporter.exe"
+Write-Host "Single-file build: $SingleFileExe"
 Write-Host "Browser sidecar uses system npx + chrome-devtools-mcp@1.6.0 --autoConnect with the normal Edge User Data."
